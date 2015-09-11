@@ -1,0 +1,3 @@
+<h2><%= link_to blog_post.title, blog_post.slug %></h2>
+<p class="meta"><%= blog_post.author_name %> <%= blog_post.published_at %></p>
+<p class="intro"><%= truncate(blog_post.body, length: 500) %></p>
