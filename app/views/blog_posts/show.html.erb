@@ -1,0 +1,6 @@
+<h1><%= @blog_post.title %></h1>
+<p class="meta"><%= @blog_post.author_name %> <%= @blog_post.published_at %></p>
+
+<div class="post-body">
+  <%= simple_format(@blog_post.body) %>
+</div>
