@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  helper Wellspring::MarkdownHelper
+
   def index
     @posts = blog_posts_with_links.order('id desc')
   end
