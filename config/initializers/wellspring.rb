@@ -1,1 +1,3 @@
-Wellspring.content_classes = %w(BlogPost BlogLink)
+Wellspring.configure do |config|
+  config.content_classes = %w(BlogPost BlogLink)
+end
