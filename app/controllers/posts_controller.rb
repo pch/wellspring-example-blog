@@ -7,6 +7,11 @@ class PostsController < ApplicationController
     @post = blog_posts_with_links.find_by_slug!(params[:slug])
   end
 
+  def search
+    @posts = blog_posts_with_links.search(params[:query])
+    render action: 'index'
+  end
+
   private
 
   def blog_posts_with_links
