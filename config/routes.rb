@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   mount Wellspring::Engine, at: "/admin"
 
   get 'search', to: 'posts#search', as: :search

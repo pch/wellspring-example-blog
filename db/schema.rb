@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911135833) do
+ActiveRecord::Schema.define(version: 20150915091854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "wellspring_entries", force: :cascade do |t|
     t.string   "type"
@@ -32,6 +50,17 @@ ActiveRecord::Schema.define(version: 20150911135833) do
   add_index "wellspring_entries", ["slug"], name: "index_wellspring_entries_on_slug", using: :btree
   add_index "wellspring_entries", ["type"], name: "index_wellspring_entries_on_type", using: :btree
   add_index "wellspring_entries", ["user_id"], name: "index_wellspring_entries_on_user_id", using: :btree
+
+  create_table "wellspring_entries_search_data", force: :cascade do |t|
+    t.integer  "entry_id"
+    t.string   "attr_name"
+    t.tsvector "search_data"
+    t.text     "raw_data"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "wellspring_entries_search_data", ["entry_id"], name: "index_wellspring_entries_search_data_on_entry_id", using: :btree
 
   create_table "wellspring_entry_search_data", force: :cascade do |t|
     t.integer  "entry_id"
