@@ -7,6 +7,6 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 
-gem 'wellspring', path: "../wellspring/"
+gem 'wellspring', git: 'git://github.com/pch/wellspring.git' # path: "../wellspring/"
 
 gem 'devise'
